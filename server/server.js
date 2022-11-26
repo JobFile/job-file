@@ -2,9 +2,8 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const PORT = 3000
-const jobRouter = require('./routes/route.js')
+const userRouter = require('./routes/route.js')
 
-// TODO: connect pg DB
 
 app.use(express.json())
 
@@ -16,7 +15,7 @@ app.post('/login', (req, res) => {
   res.status(201).send('login reached'/* add cookie here? */)
 })
 
-app.use('/jobApp', jobRouter)
+app.use('/users', userRouter)
 
 app.use('*', (req, res) => {
   res.sendStatus(404)
