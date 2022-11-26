@@ -1,3 +1,2 @@
 
-import styles from './main.scss'
-
+import styles from './scss/login.scss'
