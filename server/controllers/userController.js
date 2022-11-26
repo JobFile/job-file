@@ -23,7 +23,34 @@ userController.createUser = (req, res, next) => {
     }).catch(() => {next({
       log: 'userController.createUser',
       message: { err: 'error inside create user controller' }
-    })})
+    });
+  });
 }
 
-module.exports = userController
+// TODO: add a redirect to signup
+
+userController.verifyUser = (req, res, next) => {
+  const { email, password } = req.body
+  const verifyQuery = `SELECT u.email, u.password, u.user_id from Users u
+  WHERE u.email = $1 AND u.password = $2`
+  const values = [email, password]
+
+  db.query(verifyQuery, values)
+    .then(data => {
+      console.log(data.rows[0])
+      if (data.rows[0] === undefined) {
+        return next({
+          log: 'verifyUser',
+          message: { err: 'ERROR: Enter valid user' }
+        })
+      }
+      res.locals.userID = data.rows[0].user_id.toString();
+      next();
+    }).catch(() => { next({
+      log: 'userController.verifyUser',
+      message: { err: 'error inside create user controller' }
+    });
+  });
+}
+
+module.exports = userController;
