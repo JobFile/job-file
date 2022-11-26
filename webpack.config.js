@@ -25,9 +25,21 @@ module.exports = {
       }
     ]
   },
+
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+      publicPath: '/dist',
+    },
+    proxy: {
+      '/': 'http://localhost:3000',
+    },
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: './src/index.html',
+      // filename: 'index.html'
     })
   ]
 }
