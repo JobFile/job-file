@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/login', userController.verifyUser, cookieController.setSSIDCookie,  sessionController.startSession, (req, res) => {
-  res.status(201).send('WE WILL REDIRECT TO DASHBOARD HTML');
+  res.status(201).send(res.locals.userID);
 });
 
 app.use('/users', userRouter)
