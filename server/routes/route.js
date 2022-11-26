@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
 
 router.post('/', userController.createUser, (req, res) => {
   console.log('inside user router')
+  
   res.status(200).send(res.locals.application)
 })
 

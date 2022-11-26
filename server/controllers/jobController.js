@@ -7,6 +7,7 @@ jobController.getJobsList = async (req, res, next) => {
     FROM jobs j 
     INNER JOIN status s ON j.fk_status = s.status_pk`
   // console.log('this is inside getJobsList');
+  
   try {
     const jobsList = await db.query(getJobsList)
     // res.locals.jobs = data.rows;
