@@ -1,12 +1,13 @@
+/* eslint-disable semi */
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './containers/App.jsx';
 
-import React, { Component } from 'react';
-import styles from './scss/login.scss'
+import './index.scss';
 
-const Login = () => {
-  return (
-    
+// ReactDOM.render(<App />, document.getElementById('root'));
 
-  );
-}
-
-export default Login;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <App />
+);

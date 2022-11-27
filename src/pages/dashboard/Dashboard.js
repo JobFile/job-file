@@ -1,15 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+
+import './dashboard.scss';
+
 import NewApplication from '../components/NewApplication.jsx';
 import JobListDisplay from '../components/JobListDisplay.jsx';
-import { render } from 'sass';
 
-const App = (props) => {
+const Dashboard = (props) => {
   return (
     <div>
+      <h1>Dashboard</h1>
       <NewApplication/>
       <JobListDisplay/>
     </div>
-  )
-}
+  );
+};
 
-export default App;
+export default Dashboard;

@@ -1,0 +1,5 @@
+{
+  "eslint.codeActionsOnSave.rules": null,
+  "eslint.alwaysShowStatus": true,
+  "eslint.nodeEnv": ""
+}
