@@ -1,48 +1,26 @@
 const db = require('../models')
-const jobController = {}
-
-jobController.getJobsList = async (req, res, next) => {
-  const getJobsList = `SELECT j.job_posting, j.company_name, j.email, 
-    j.phone_number, j.contact, s.description
-    FROM jobs j 
-    INNER JOIN status s ON j.fk_status = s.status_pk`
-  // console.log('this is inside getJobsList');
-  
-  try {
-    const jobsList = await db.query(getJobsList)
-    // res.locals.jobs = data.rows;
-    res.locals.jobs = jobsList.rows
-
-    // console.log('this is res.locals.jobs ', res.locals.jobs);
-    return next()
-  } catch (error) {
-    return next({
-      log: 'jobTrackerController.getJobsList error',
-      message: { err: 'ERROR in jobTrackerController.getJobsList' }
-    })
-  }
-}
-
-module.exports = jobController
-const db = require('../models')
-const jobController = {}
+const jobController = {};
 //TODO: Check if job middleware works and create jobs router
 jobController.getJobsList = async (req, res, next) => {
-  const userID = req.params.id
-  const getJobsList = `SELECT j.user_id, j.job_role, j.company_name, 
-    j.phone, j.email, j.contact_name, j.job_list j.status, 
+  const userID = req.params.id;
+  const getJobs = `SELECT j.user_id, j.job_role, j.company_name, 
+    j.phone, j.email, j.contact_name, j.job_link, j.status 
     FROM jobs j
-    WHERE user_id = $1`
-    const values = [userID]
-  // console.log('this is inside getJobsList');
-  
+    WHERE j.user_id = $1`
+    const values = [userID];
+    // console.log(userID)
   try {
-    const jobsList = await db.query(getJobsList, values)
-    // res.locals.jobs = data.rows;
-    res.locals.jobs = jobsList.rows
-
-    // console.log('this is res.locals.jobs ', res.locals.jobs);
-    return next()
+    console.log('inside try')
+    const jobsList = await db.query(getJobs, values)
+    console.log(jobsList)
+    // if(jobsList.rows[0] === undefined) {
+    //   return next({
+    //     log: 'jobController.getJobsList',
+    //     message: { err: 'ERROR: no jobs found in getJobsList' }
+    //   })
+    // }
+    res.locals.jobs = jobsList.rows;
+    return next();
   } catch (error) {
     return next({
       log: 'jobTrackerController.getJobsList error',
@@ -56,7 +34,7 @@ jobController.createJob = (req, res, next) => {
   const {job_role, company_name, phone, email, contact_name, job_link, status, user_id} = req.body;
   const newJob = `INSERT INTO jobs (job_role, company_name, phone, email, contact_name, job_link, status, user_id)
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`
-  values = [job_role, company_name, phone, email, contact_name, job_link, status, user_id];
+  const values = [job_role, company_name, phone, email, contact_name, job_link, status, user_id];
 
   db.query(newJob, values)
   .then(data => {
@@ -68,8 +46,8 @@ jobController.createJob = (req, res, next) => {
       })
     }
     res.locals.application = data.rows[0]
-    console.log(res.locals.application)
-    return next()
+    console.log(res.locals.application);
+    return next();
   }).catch(() => {next({
     log: 'userController.createJob',
     message: { err: 'error inside create job controller' }
@@ -77,5 +55,49 @@ jobController.createJob = (req, res, next) => {
 });
   
 }
+
+jobController.deleteJob = async (req, res, next) => {
+  console.log('inside deleted controller')
+  const {id} = req.params;
+  const deleteJob = `DELETE FROM jobs WHERE job_id = $1 RETURNING *`;
+  const values = [id];
+
+  try {
+    const deleted = await db.query(deleteJob, values);
+    console.log(deleted)
+    res.locals.application = deleted.rows[0];
+    return next()
+  }catch {
+    return next({
+      log: 'jobTrackerController.deleteJob error',
+      message: { err: 'ERROR in jobTrackerController.deleteJob controller' }
+    })
+  }
+
+}
+
+jobController.updateJob = async (req, res, next) => {
+  console.log('inside update controller')
+  const {id} = req.params;
+  const {newStatus} = req.body;
+  const updateJob = `UPDATE jobs SET status = $1 WHERE job_id = $2 RETURNING *`;
+  const values = [newStatus, id];
+
+  try {
+    const updated = await db.query(updateJob, values);
+    console.log(updated)
+    res.locals.application = updated.rows[0];
+    return next()
+  }catch {
+    return next({
+      log: 'jobTrackerController.updateJob error',
+      message: { err: 'ERROR in jobTrackerController.updateJob controller' }
+    })
+  }
+
+}
+
+
+
 
 module.exports = jobController
