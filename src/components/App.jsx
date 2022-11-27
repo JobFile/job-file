@@ -7,7 +7,6 @@ const App = (props) => {
   return (
     <div>
       <NewApplication/>
-      <JobListDisplay/>
     </div>
   )
 }

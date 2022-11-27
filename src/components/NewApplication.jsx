@@ -26,18 +26,18 @@ const NewApplicationCreator = (props) => {
   const [contactName, contactNameOnChange] = useInput('')
   const [link, linkOnChange] = useInput('')
   const [status, statusOnChange] = useInput('')
+  const jobApp = {
+    jobRole,
+    companyName,
+    email,
+    phoneNumber,
+    contactName,
+    link,
+    status
+  }
 
   const createApp = () => {
     const myfunc = () => {
-      const jobApp = {
-        jobRole,
-        companyName,
-        email,
-        phoneNumber,
-        contactName,
-        link,
-        status
-      }
       console.log('entering fetch', jobApp)
       fetch('/dashboard/', {
         method: 'POST',
@@ -56,17 +56,20 @@ const NewApplicationCreator = (props) => {
     return myfunc();
   }
   return (
-    <div className="newApplication">Please enter job application desription below:
-      <form>
-        <input type="text" id="jobRole" name="jobRole" placeholder="Job Role" value={jobRole} onChange={jobRoleOnChange}/>
-        <input type="text" id="companyName" name="companyName" placeholder="Company Name" value={companyName} onChange={companyNameOnChange}/>
-        <input type="text" id="email" name="email" placeholder="jane.doe@google.com" value={email} onChange={emailOnChange}/>
-        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="xxx-xxx-xxxx" value={phoneNumber} onChange={phoneNumberOnChange}/>
-        <input type="text" id="contactName" name="contactName" placeholder="Contact Name" value={contactName} onChange={contactNameOnChange}/>
-        <input type="text" id="link" name="link" placeholder="Job Posting URL" value={link} onChange={linkOnChange}/>
-        <input type="text" id="status" name="status" placeholder="Current Status" value={status} onChange={statusOnChange}/>;
-        <button id="createApp" type="submit" onClick={createApp}>Create Application</button>
-      </form>
-  </div>
+    <div>
+      <div className="newApplication">Please enter job application desription below:
+        <form>
+          <input type="text" id="jobRole" name="jobRole" placeholder="Job Role" value={jobRole} onChange={jobRoleOnChange}/>
+          <input type="text" id="companyName" name="companyName" placeholder="Company Name" value={companyName} onChange={companyNameOnChange}/>
+          <input type="text" id="email" name="email" placeholder="jane.doe@google.com" value={email} onChange={emailOnChange}/>
+          <input type="text" id="phoneNumber" name="phoneNumber" placeholder="xxx-xxx-xxxx" value={phoneNumber} onChange={phoneNumberOnChange}/>
+          <input type="text" id="contactName" name="contactName" placeholder="Contact Name" value={contactName} onChange={contactNameOnChange}/>
+          <input type="text" id="link" name="link" placeholder="Job Posting URL" value={link} onChange={linkOnChange}/>
+          <input type="text" id="status" name="status" placeholder="Current Status" value={status} onChange={statusOnChange}/>;
+          <button id="createApp" type="submit" onClick={createApp}>Create Application</button>
+        </form>
+      </div>
+      <
+    </div>
   )
 }
