@@ -26,7 +26,7 @@ jobController.getJobsList = async (req, res, next) => {
 module.exports = jobController
 const db = require('../models')
 const jobController = {}
-
+//TODO: Check if job middleware works and create jobs router
 jobController.getJobsList = async (req, res, next) => {
   const userID = req.params.id
   const getJobsList = `SELECT j.user_id, j.job_role, j.company_name, 
