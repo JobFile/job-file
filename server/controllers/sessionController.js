@@ -22,7 +22,7 @@ sessionController.isLoggedIn = (req, res, next) => {
 
 sessionController.startSession = async (req, res, next) => {
   const id = res.locals.userID;
-  const addSessionQuery = `INSERT INTO session (user_id)
+  const addSessionQuery = `INSERT INTO session (cookie_id)
   VALUES ($1)`
   const values = [id];
   try {
