@@ -3,18 +3,14 @@ const sessionController = {};
 
 sessionController.isLoggedIn = (req, res, next) => {
   const cookieID = req.cookies.ssid;
-  const findSessionQuery = `SELECT s.cookie_id FROM session s
-  WHERE s.cookie_id = $1`
+  const findSessionQuery = `SELECT cookie_id FROM session
+  WHERE cookie_id = $1`
   const values = [cookieID];
   db.query(findSessionQuery, values)
     .then((data) => {
       if (data.rows[0] !== undefined){
         return next();
-      } else {
-        console.log('cookie not found');
-        // res.redirect('/signup');
-
-      }
+      } 
     })
     .catch(() => {
       return next({
@@ -26,7 +22,7 @@ sessionController.isLoggedIn = (req, res, next) => {
 
 sessionController.startSession = async (req, res, next) => {
   const id = res.locals.userID;
-  const addSessionQuery = `INSERT INTO session (cookie_id)
+  const addSessionQuery = `INSERT INTO session (user_id)
   VALUES ($1)`
   const values = [id];
   try {
