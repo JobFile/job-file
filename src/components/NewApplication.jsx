@@ -18,7 +18,7 @@ function reducer (jobList, action) {
       return [...jobList, (action.payload.jobApp)];
     case ACTIONS.DELETE_APP:
       console.log('i am payload job id', action.payload.id);
-      return jobList.filter(job => job.id !== action.payload.id);
+      return jobList.filter(job => job.job_id !== action.payload.id);
     default:
       return jobList;
   }
@@ -39,19 +39,13 @@ const NewApplicationCreator = ({user}) => {
       .then(response => response.json()
       )
       .then((data) => {
-        // console.log(data);
-        // unique key
-        // data.forEach(app => {
-        //   app.id = app.job_id;
-        //   // console.log("hello",app)
-        // });
         dispatch({ type: ACTIONS.INITIALIZE, payload: { initialList: data } });
       })
       .catch(() => {
         console.log('err getting stuff');
       });
   }, []);
-  // console.log('this is my data', data);
+
 
   const [jobList, dispatch] = useReducer(reducer, []);
 
@@ -87,15 +81,15 @@ const NewApplicationCreator = ({user}) => {
     })
       .then(response => {
         console.log('my response from posting  new jobApp using user id is: ', response);
-        jobApp.id = response.job_id;
+        return response.json();
       })
+      .then((data)=> dispatch({ type: ACTIONS.ADD_APP, payload: { jobApp: data }}))
       .catch(() => {
         console.log('An error occurred posting to database');
       });
     //console.log('im supposed to fetch and this is my jobapp', jobApp);
 
     // dispatch should be moved into fetch request to avoid date.now to give unique key, payload should be the response from posting;
-    dispatch({ type: ACTIONS.ADD_APP, payload: { jobApp } });
 
     // using reset functions from custom hooks to reset each state to empty => input values reset to empty
     resetJobRole();
@@ -108,8 +102,11 @@ const NewApplicationCreator = ({user}) => {
   };
 
   console.log('this is jobList ', jobList);
+  const body = document.querySelector('body');
+  body.style.backgroundColor = 'lightgrey';
+
   return (
-      <div style={ {background: 'white'}}>
+      <div>
         <div className="newApplication">
           <h2 id="newApp">Please enter job application desription below:</h2>
           <form>
@@ -126,19 +123,19 @@ const NewApplicationCreator = ({user}) => {
           <table id="jobTable">
             <thead id="tableHead">
               <tr>
-                <th>Job Role</th>
-                <th>Company Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Contact Name</th>
-                <th>Link to Job Posting</th>
-                <th>Status</th>
+                <th>JOB ROLE</th>
+                <th>COMPANY NAME</th>
+                <th>EMAIL</th>
+                <th>PHONE</th>
+                <th>CONTACT NAME</th>
+                <th>URL</th>
+                <th>STATUS</th>
               </tr>
             </thead>
             <tbody>
               {jobList.map(job => {
-                console.log('i am the key', job.id);
-                return <Job key={job.id} job={job} dispatch={dispatch}/>;
+                console.log('i am the key', job.job_id);
+                return <Job key={job.job_id} job={job} dispatch={dispatch}/>;
               })}
 
             </tbody>
