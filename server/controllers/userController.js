@@ -31,6 +31,7 @@ userController.createUser = async (req, res, next) => {
 
 userController.verifyUser = (req, res, next) => {
   const { email, password } = req.body
+  console.log('i am req body from login', req.body);
   const verifyQuery = `SELECT email, password, user_id FROM Users
   WHERE email = $1`
   const values = [email]
@@ -38,8 +39,10 @@ userController.verifyUser = (req, res, next) => {
   db.query(verifyQuery, values)
     .then(data => {
       const bool = bcrypt.compareSync(password, data.rows[0].password);
+      console.log('i am bool', bool);
       if (bool) {
         res.locals.userID = data.rows[0].user_id;
+        console.log(res.locals.userID);
         return next();
       } else {
         return next({

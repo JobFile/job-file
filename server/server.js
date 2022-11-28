@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/login', userController.verifyUser, cookieController.setSSIDCookie,  sessionController.startSession, (req, res) => {
+  console.log('i am inside login server and res...userId is', res.locals.userID);
   res.status(201).json({ userID: res.locals.userID });
 });
 

@@ -23,6 +23,7 @@ jobController.getJobsList = async (req, res, next) => {
 
 
 jobController.createJob = (req, res, next) => {
+  console.log(req.body)
   const {job_role, company_name, phone, email, contact_name, job_link, status, user_id} = req.body;
   const newJob = `INSERT INTO jobs (job_role, company_name, phone, email, contact_name, job_link, status, user_id)
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`

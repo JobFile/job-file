@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ACTIONS } from './NewApplication.jsx';
+// PROPS.JOB = JOB
 
 export default function Job ({ job, dispatch }) {
   const deleteApp = () => {

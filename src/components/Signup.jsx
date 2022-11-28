@@ -8,7 +8,7 @@ const Signup = (props) => {
   const [password, passwordOnChange] = useInput('');
   const newUser = { firstName, lastName, email, password };
   const createAccount = () => {
-    fetch.post('/users', {
+    fetch('/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'Application/JSON'

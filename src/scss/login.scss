@@ -33,10 +33,18 @@ button {
 }
 
 .newApp-Field {
-  // background: rgba(0, 0, 0, .25);
-  display: grid;
-  // grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  color: rgb(12, 40, 52);
+  // display: grid;
+  // grid-template-columns: 1fr 1fr 1fr;
+  // grid-template-rows: 1fr 1fr 1fr;
+  // gap: 5px 5px;
+  // grid-template-areas:
+  //   "JobPosition CompanyName Email"
+  //   "Phone Contact Link"
+  //   "Status Status Button";
+  // width: 800px;
+  // height: 300px;
+
+  background-color: rgba(255, 255, 255, .5);
   margin-top: 1rem;
   padding: 1rem;
   font-size: 1.2rem;
@@ -47,6 +55,14 @@ button {
   // transition: all .1s linear;
 }
 
+// .Status { grid-area: Status; }
+// .Button { grid-area: Button; }
+// .JobPosition { grid-area: JobPosition; }
+// .CompanyName { grid-area: CompanyName; }
+// .Email { grid-area: Email; }
+// .Phone { grid-area: Phone; }
+// .Contact { grid-area: Contact; }
+// .Link { grid-area: Link; }
 // .newApp-Field:focus {
 //   box-shadow: 10px 4px rgba(0, 0, 0, .5);
 //   outline: none;
@@ -90,17 +106,19 @@ button {
   color: whitesmoke;
   margin-bottom: 10px;
 }
+
 #signUpTitle {
   color: whitesmoke;
   margin-bottom: 10px;
 }
+
 .newApplication {
-//   text-align: center;
-//   margin-bottom: 10px;
-//   color: whitesmoke;
-   border: rgb(12, 40, 52);
-   background-color: #171d2c;
-   backdrop-filter: saturate(180%) blur(10px);
+  //   text-align: center;
+  //   margin-bottom: 10px;
+  //   color: whitesmoke;
+  border: rgb(12, 40, 52);
+  background-color: #171d2c;
+  backdrop-filter: saturate(180%) blur(10px);
 }
 
 #jobTable {
