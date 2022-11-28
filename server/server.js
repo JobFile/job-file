@@ -2,7 +2,8 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const PORT = 3000
-const userRouter = require('./routes/route.js')
+const userRouter = require('./routes/userRouter.js');
+const jobRouter = require('./routes/jobRouter.js')
 const userController = require('./controllers/userController.js');
 const cookieController = require('./controllers/cookieController.js')
 const sessionController = require('./controllers/sessionController.js')
@@ -15,13 +16,15 @@ app.get('/', (req, res) => {
 });
 
 app.post('/login', userController.verifyUser, cookieController.setSSIDCookie,  sessionController.startSession, (req, res) => {
-  res.status(201).json(res.locals.userID);
+  res.status(201).json({ userID: res.locals.userID });
 });
 
-app.use('/users', userRouter)
+app.use('/users', userRouter);
+
+app.use('/jobs', jobRouter);
 
 app.use('*', (req, res) => {
-  res.sendStatus(404)
+  res.status(404).send('Not Found');
 });
 
 app.use((err, req, res, next) => {

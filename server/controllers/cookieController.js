@@ -4,8 +4,8 @@ require('dotenv').config();
 
 cookieController.setSSIDCookie = (req, res, next) => {
   try {
-  res.cookie('ssid', res.locals.userID, {httpOnly: true});
-  return next();
+    res.cookie('ssid', res.locals.userID, {httpOnly: true});
+    return next();
   } catch {
     return next({
       log: 'cookieController.setSSIDCookie error',
