@@ -3,7 +3,7 @@
 
 
 * {
-  font-family: 'Ubuntu Light', sans-serif;
+  font-family: 'Oswald', sans-serif;
 }
 
 body {
@@ -25,13 +25,24 @@ button {
   // padding: 1rem;
   // font-size: 1.2rem;
   // border-radius: 7px;
+  &:hover {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .5);
+    background-color: #005e46;
+    color: white;
+    cursor: pointer;
+    // outline: none;
+  }
 }
 
-.button:hover {
-  box-shadow: 0 4px 4px rgba(0, 0, 0, .5);
-  background-color: #005e46;
-  // outline: none;
+.delete-button {
+  color: rgb(231, 231, 232);
+  background-color: rgb(83, 82, 82);
+
+  &:hover {
+    background-color: rgb(129, 128, 128);
+  }
 }
+
 
 .newApp-Field {
   // display: grid;
@@ -68,7 +79,7 @@ button {
 //   box-shadow: 10px 4px rgba(0, 0, 0, .5);
 //   outline: none;
 // }
-.signUp-Field {
+.signUp-Field, .login-Field {
   color: rgb(12, 40, 52);
   margin-top: 1rem;
   padding: 1rem;
@@ -76,23 +87,34 @@ button {
   border-radius: 7px;
   border: none;
   box-shadow: 0 4px 4px rgba(0, 0, 0, .5);
+  
 }
 
-.login-Field {
-  color: rgb(12, 40, 52);
-  margin-top: 1rem;
-  padding: 1rem;
-  font-size: 1.2rem;
-  border-radius: 7px;
-  border: none;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, .5);
-}
-
-#login {
+#login, #signup {
   color: whitesmoke;
-  // text-align: center;
-  margin-bottom: 10px;
+  width: 50%;
+  margin: 10% auto 10px;
+  text-align: center;
 }
+
+.button-container {
+  width: 35%;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.fieldDiv {
+  display: flex;
+  flex-direction: column;
+
+  & input {
+    width: 60%;
+    margin: 0.5% auto;
+  }
+}
+
+
 
 #header {
   text-align: center;

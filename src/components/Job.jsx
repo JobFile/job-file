@@ -22,7 +22,7 @@ export default function Job ({ job, dispatch }) {
       <td>{job.contact_name}</td>
       <td>{job.job_link}</td>
       <td>{job.status}</td>
-      <td><button onClick={deleteApp}>Delete</button></td>
+      <td><button className='delete-button' onClick={deleteApp}>Delete</button></td>
     </tr>
   );
 };

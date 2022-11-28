@@ -40,14 +40,14 @@ const Login = ({setUser}) => {
 
   return (
     <div id="login">
-      <h2>Login</h2>
-      <div>
+      <h2>Login to track your job applications!</h2>
+      <div className='fieldDiv'>
         <input className="login-Field" name="email" type="email" placeholder="email" value={email} onChange={emailOnChange}></input>
         <input className="login-Field" name="password" type="password" placeholder="password" value={password} onChange={passwordOnChange}></input>
       </div>
-      <div>
-        <button className="buttton" onClick={sendLogin}>Login</button>
-        <button className="buttton" onClick={() => navigate('/users')}> Sign up</button>
+      <div className='button-container'>
+        <button className="button" onClick={sendLogin}>Login</button>
+        <button className="button" onClick={() => navigate('/users')}> Sign up</button>
       </div>
     </div>
   );
