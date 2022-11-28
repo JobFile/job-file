@@ -4,11 +4,14 @@ import Job from './Job.jsx';
 
 export const ACTIONS = {
   ADD_APP: 'add-app',
-  DELETE_APP: 'delete-ap'
+  DELETE_APP: 'delete-ap',
+  INITIALIZE: 'initialize'
 };
 
 function reducer (jobList, action) {
   switch (action.type) {
+    case ACTIONS.INITIALIZE:
+      return [...action.payload.initialList];
     case ACTIONS.ADD_APP:
       console.log(action.payload.jobApp);
       return [...jobList, newJobApp(action.payload.jobApp)];
@@ -21,32 +24,45 @@ function reducer (jobList, action) {
 };
 
 // this function adds in a unique id to be called later when deleting app
+// unique key should be handled when posting data
 function newJobApp (jobApp) {
   jobApp.id = Date.now();
   return jobApp;
 }
 
-const NewApplicationCreator = (props) => {
-  let list = [];
-  // useEffect(() => {
-  //   fetch('/dashbaord')
+const NewApplicationCreator = () => {
+  // let list = [];
+  
+  useEffect(() => {
+    fetch('/dashboard')
+      .then(response => response.json()
+      )
+      .then((data) => {
+        //console.log(data);
+        // unique key
+        data.forEach(app => {
+          
+          app.id = app.job_id;
+         // console.log("hello",app)
+        });
+        dispatch({ type: ACTIONS.INITIALIZE, payload: { initialList: data } });
+      })
+      .catch(() => {
+        console.log('err getting stuff');
+      });
 
-  //     .then(response => response.json()
-  //     )
-  //     .then((data) => {
-  //       console.log(data);
-  //     });
-  // }, []);
+   }, []);
+ // console.log('this is my data', data);
 
-  const [jobList, dispatch] = useReducer(reducer, list);
+  const [jobList, dispatch] = useReducer(reducer, []);
 
-  const [jobRole, jobRoleOnChange] = useInput('');
-  const [companyName, companyNameOnChange] = useInput('');
-  const [email, emailOnChange] = useInput('');
-  const [phoneNumber, phoneNumberOnChange] = useInput('');
-  const [contactName, contactNameOnChange] = useInput('');
-  const [link, linkOnChange] = useInput('');
-  const [status, statusOnChange] = useInput('');
+  const [jobRole, jobRoleOnChange, resetJobRole] = useInput('');
+  const [companyName, companyNameOnChange, resetCompanyName] = useInput('');
+  const [email, emailOnChange, resetEmail] = useInput('');
+  const [phoneNumber, phoneNumberOnChange, resetPhone] = useInput('');
+  const [contactName, contactNameOnChange, resetContact] = useInput('');
+  const [link, linkOnChange, resetLink] = useInput('');
+  const [status, statusOnChange, resetStatus] = useInput('');
   const jobApp = {
     jobRole,
     companyName,
@@ -76,21 +92,17 @@ const NewApplicationCreator = (props) => {
     //   });
     console.log('im supposed to fetch and this is my jobapp', jobApp);
 
+    // dispatch should be moved into fetch request to avoid date.now to give unique key, payload should be the response from posting;
     dispatch({ type: ACTIONS.ADD_APP, payload: { jobApp } });
-    // rest values to empty
-    const inputs = document.querySelectorAll(`
-      #jobRole,
-      #companyName,
-      #email,
-      #phoneNumber,
-      #contactName,
-      #link,
-      #status
-      `);
 
-    inputs.forEach(input => {
-      input.value = '';
-    });
+    // using reset functions from custom hooks to reset each state to empty => input values reset to empty
+    resetJobRole();
+    resetCompanyName();
+    resetEmail();
+    resetPhone();
+    resetContact();
+    resetLink();
+    resetStatus();
   };
 
   console.log('this is jobList ', jobList);
