@@ -21,14 +21,16 @@ const Signup = (props) => {
       });
   };
   return (
-    <div className="signUp">
+    <div id="signup">
       <h2 id="signUpTitle">Sign up</h2>
-      <div>
+      <div className='fieldDiv'>
         <input className="signUp-Field" name="firstName" type="text" placeholder="First Name" value={firstName} onChange={fNameOnChange}/>
         <input className="signUp-Field" name="lastName" type="text" placeholder="Last Name" value={lastName} onChange={lNameOnChange}/>
         <input className="signUp-Field" name="email" type="email" placeholder="Email" value={email} onChange={emailOnChange}/>
         <input className="signUp-Field" name="password" type="password" placeholder="Password" value={password} onChange={passwordOnChange}/>
-        <button className="buttton" onClick={createAccount}>Create Account</button>
+      </div>
+      <div className='button-container'>
+        <button className="button" onClick={createAccount}>Create Account</button>
       </div>
     </div>
   );
