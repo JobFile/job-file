@@ -1,14 +1,10 @@
 
-import React, { Component } from 'react';
-import App from './components/App';
-import styles from './scss/login.scss'
+import React from 'react';
+import App from './components/App.jsx';
+import { render } from 'react-dom';
+//import styles from './scss/login.scss'
 
-const Login = () => {
-  return (
-    <App/>
-    
-
-  )
-}
-
-export default Login;
+render(
+  <App />,
+  document.getElementById('root')
+);
