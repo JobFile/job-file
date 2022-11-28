@@ -28,6 +28,7 @@
     "nodemon": "^2.0.20",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1",
     "webpack": "^5.75.0"
   },
   "dependencies": {
