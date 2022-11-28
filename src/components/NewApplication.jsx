@@ -6,7 +6,8 @@ import { useParams } from 'react-router-dom';
 export const ACTIONS = {
   ADD_APP: 'add-app',
   DELETE_APP: 'delete-ap',
-  INITIALIZE: 'initialize'
+  INITIALIZE: 'initialize',
+  UPDATE_STATUS: 'update-status'
 };
 
 function reducer (jobList, action) {
@@ -19,6 +20,14 @@ function reducer (jobList, action) {
     case ACTIONS.DELETE_APP:
       console.log('i am payload job id', action.payload.id);
       return jobList.filter(job => job.job_id !== action.payload.id);
+    case ACTIONS.UPDATE_STATUS:
+      const newJobList = [...jobList];
+      for(let job of newJobList) {
+        if (job.job_id === action.payload.id) {
+          job.status = action.payload.newStatus;
+        }
+      }
+      return newJobList;
     default:
       return jobList;
   }
