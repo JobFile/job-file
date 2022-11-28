@@ -1,6 +1,7 @@
 import React, { useReducer, useState, useEffect } from 'react';
 import { useInput } from '../hooks';
 import Job from './Job.jsx';
+import { useParams } from 'react-router-dom';
 
 export const ACTIONS = {
   ADD_APP: 'add-app',
@@ -31,45 +32,43 @@ function newJobApp (jobApp) {
 }
 
 const NewApplicationCreator = () => {
-  // let list = [];
-  
+  const { id } = useParams();
+  console.log ('i am id:', id);
   useEffect(() => {
-    fetch('/dashboard')
+    fetch(`/dashboard/${id}`)
       .then(response => response.json()
       )
       .then((data) => {
-        //console.log(data);
+        // console.log(data);
         // unique key
         data.forEach(app => {
-          
           app.id = app.job_id;
-         // console.log("hello",app)
+          // console.log("hello",app)
         });
         dispatch({ type: ACTIONS.INITIALIZE, payload: { initialList: data } });
       })
       .catch(() => {
         console.log('err getting stuff');
       });
-
-   }, []);
- // console.log('this is my data', data);
+  }, []);
+  // console.log('this is my data', data);
 
   const [jobList, dispatch] = useReducer(reducer, []);
 
-  const [jobRole, jobRoleOnChange, resetJobRole] = useInput('');
-  const [companyName, companyNameOnChange, resetCompanyName] = useInput('');
+  const [job_role, jobRoleOnChange, resetJobRole] = useInput('');
+  const [company_name, companyNameOnChange, resetCompanyName] = useInput('');
   const [email, emailOnChange, resetEmail] = useInput('');
-  const [phoneNumber, phoneNumberOnChange, resetPhone] = useInput('');
-  const [contactName, contactNameOnChange, resetContact] = useInput('');
-  const [link, linkOnChange, resetLink] = useInput('');
+  const [phone, phoneNumberOnChange, resetPhone] = useInput('');
+  const [contact_name, contactNameOnChange, resetContact] = useInput('');
+  const [job_link, linkOnChange, resetLink] = useInput('');
   const [status, statusOnChange, resetStatus] = useInput('');
   const jobApp = {
-    jobRole,
-    companyName,
+    job_role,
+    company_name,
     email,
-    phoneNumber,
-    contactName,
-    link,
+    phone,
+    contact_name,
+    job_link,
     status
   };
   const createApp = (e) => {
@@ -111,12 +110,12 @@ const NewApplicationCreator = () => {
         <div className="newApplication">
           <h2 id="newApp">Please enter job application desription below:</h2>
           <form>
-            <input className="newApp-Field" type="text" id="jobRole" name="jobRole" placeholder="Job Role" value={jobRole} onChange={jobRoleOnChange} />
-            <input className="newApp-Field" type="text" id="companyName" name="companyName" placeholder="Company Name" value={companyName} onChange={companyNameOnChange} />
-            <input className="newApp-Field" type="text" id="email" name="email" placeholder="jane.doe@google.com" value={email} onChange={emailOnChange} />
-            <input className="newApp-Field" type="text" id="phoneNumber" name="phoneNumber" placeholder="xxx-xxx-xxxx" value={phoneNumber} onChange={phoneNumberOnChange} />
-            <input className="newApp-Field" type="text" id="contactName" name="contactName" placeholder="Contact Name" value={contactName} onChange={contactNameOnChange} />
-            <input className="newApp-Field" type="text" id="link" name="link" placeholder="Job Posting URL" value={link} onChange={linkOnChange} />
+            <input className="newApp-Field" type="text" id="jobRole" name="jobRole" placeholder="Job Role" value={job_role} onChange={jobRoleOnChange} />
+            <input className="newApp-Field" type="text" id="companyName" name="companyName" placeholder="Company Name" value={company_name} onChange={companyNameOnChange} />
+            <input className="newApp-Field" type="text" id="email" name="email" placeholder="Email" value={email} onChange={emailOnChange} />
+            <input className="newApp-Field" type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" value={phone} onChange={phoneNumberOnChange} />
+            <input className="newApp-Field" type="text" id="contactName" name="contactName" placeholder="Contact Name" value={contact_name} onChange={contactNameOnChange} />
+            <input className="newApp-Field" type="text" id="link" name="link" placeholder="Job Posting URL" value={job_link} onChange={linkOnChange} />
             <input className="newApp-Field" type="text" id="status" name="status" placeholder="Current Status" value={status} onChange={statusOnChange} />
             <button className="buttton" id="createApp" type="submit" onClick={createApp}>Create Application</button>
           </form>

@@ -1,6 +1,10 @@
-* {
-  font-family: 'Ubuntu Light', sans-serif;
-}
+@import './variables';
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Oswald&display=swap');
+
+
+// * {
+//   font-family: 'Ubuntu Light', sans-serif;
+// }
 
 body {
   background: rgb(12, 40, 52);
@@ -30,6 +34,8 @@ button {
 
 .newApp-Field {
   // background: rgba(0, 0, 0, .25);
+  display: grid;
+  // grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   color: rgb(12, 40, 52);
   margin-top: 1rem;
   padding: 1rem;
@@ -45,6 +51,15 @@ button {
 //   box-shadow: 10px 4px rgba(0, 0, 0, .5);
 //   outline: none;
 // }
+.signUp-Field {
+  color: rgb(12, 40, 52);
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 7px;
+  border: none;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, .5);
+}
 
 .login-Field {
   color: rgb(12, 40, 52);
@@ -75,22 +90,28 @@ button {
   color: whitesmoke;
   margin-bottom: 10px;
 }
-
+#signUpTitle {
+  color: whitesmoke;
+  margin-bottom: 10px;
+}
 .newApplication {
 //   text-align: center;
 //   margin-bottom: 10px;
 //   color: whitesmoke;
    border: rgb(12, 40, 52);
+   background-color: #171d2c;
+   backdrop-filter: saturate(180%) blur(10px);
 }
 
 #jobTable {
   background-color: #1c1042;
   color: whitesmoke;
-  font-size: 20px;
+  font-size: 16px;
   margin: 70px;
   padding: 20px;
+  backdrop-filter: saturate(180%) blur(10px);
 }
 
 #tableHead {
-  font-size: 25px;
+  font-size: 18px;
 }

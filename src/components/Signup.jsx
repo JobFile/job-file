@@ -8,7 +8,7 @@ const Signup = (props) => {
   const [password, passwordOnChange] = useInput('');
   const newUser = { firstName, lastName, email, password };
   const createAccount = () => {
-    fetch.post('/signup', {
+    fetch.post('/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'Application/JSON'
@@ -21,14 +21,14 @@ const Signup = (props) => {
       });
   };
   return (
-    <div>
-      <h3>Sign up</h3>
+    <div className="signUp">
+      <h2 id="signUpTitle">Sign up</h2>
       <div>
-        <input name="firstName" type="text" placeholder="first name" value={firstName} onChange={fNameOnChange}/>
-        <input name="lastName" type="text" placeholder="last name" value={lastName} onChange={lNameOnChange}/>
-        <input name="email" type="email" value={email} onChange={emailOnChange}/>
-        <input name="password" type="password" value={password} onChange={passwordOnChange}/>
-        <button onClick={createAccount}>Create Account</button>
+        <input className="signUp-Field" name="firstName" type="text" placeholder="First Name" value={firstName} onChange={fNameOnChange}/>
+        <input className="signUp-Field" name="lastName" type="text" placeholder="Last Name" value={lastName} onChange={lNameOnChange}/>
+        <input className="signUp-Field" name="email" type="email" placeholder="Email" value={email} onChange={emailOnChange}/>
+        <input className="signUp-Field" name="password" type="password" placeholder="Password" value={password} onChange={passwordOnChange}/>
+        <button className="buttton" onClick={createAccount}>Create Account</button>
       </div>
     </div>
   );
