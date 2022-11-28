@@ -16,12 +16,12 @@ app.get('/', (req, res) => {
 });
 
 app.post('/login', userController.verifyUser, cookieController.setSSIDCookie,  sessionController.startSession, (req, res) => {
-  res.status(201).json({ userID: res.locals.userID});
+  res.status(201).json({ userID: res.locals.userID });
 });
 
 app.use('/users', userRouter);
 
-app.use('/job', jobRouter);
+app.use('/jobs', jobRouter);
 
 app.use('*', (req, res) => {
   res.status(404).send('Not Found');
