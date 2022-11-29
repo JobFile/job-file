@@ -22,6 +22,8 @@ export default function Job ({ job, dispatch }) {
     })
     .catch(()=>console.log('couldnt fetch patch request'));
     resetStatus();
+    const updateField = document.querySelector('#update-field');
+    updateField.style.display = 'none';
   }
 
   const deleteApp = () => {
@@ -34,6 +36,13 @@ export default function Job ({ job, dispatch }) {
       .then(response => console.log(response));
   };
 
+
+  const renderUpdate = () => {
+    const updateField = document.querySelector('#update-field');
+    updateField.
+    
+    style.display = 'contents';
+  }
   return (
     <tr>
       <td>{job.job_role}</td>
@@ -43,11 +52,19 @@ export default function Job ({ job, dispatch }) {
       <td>{job.contact_name}</td>
       <td>{job.job_link}</td>
       <td>{job.status}</td>
-      <td><button className='delete-button' onClick={deleteApp}>Delete</button></td>
       <td>
-        <input type="text" id="status" name="status" placeholder="status" value={status} onChange={statusOnChange} />
-        <button onClick={updateStatus}>submit status</button>
+        <button onClick={renderUpdate}>Update Status</button>
       </td>
+      <td id="update-field">
+      <div className='update'>
+        <input type="text" id="status" className='status' name="status" placeholder="status" value={status} onChange={statusOnChange} />
+        <button class="submit-status-btn" onClick={updateStatus}>submit status</button>
+        </div>
+      </td>
+      <td>
+        <button className='delete-button' onClick={deleteApp}>Delete</button>
+      </td>
+      
     </tr>
   );
 };
