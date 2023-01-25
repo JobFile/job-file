@@ -5,11 +5,11 @@ const jobController = require('../controllers/jobController');
 const router = express.Router();
 
 router.post('/', userController.createUser, (req, res) => {
-  res.status(200).send(res.locals.createdUser)
+  res.status(200).send(res.locals.createdUser);
 });
 
 router.get('/:id', jobController.getJobsList, (req, res) => {
-  res.status(200).json(res.locals.jobs)
+  res.status(200).json(res.locals.jobs);
 });
 
 module.exports = router;

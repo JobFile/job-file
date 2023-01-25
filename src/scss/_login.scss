@@ -1,0 +1,29 @@
+@import './variables';
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Oswald&display=swap');
+
+.signUp-Field,
+.login-Field {
+  color: rgb(12, 40, 52);
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 7px;
+  border: none;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, .5);
+
+}
+
+#login,
+#signup {
+  color: whitesmoke;
+  width: 50%;
+  margin: 10% auto 10px;
+  text-align: center;
+}
+
+#header {
+  text-align: center;
+  // letter-spacing: .2em;
+  color: whitesmoke;
+  margin-bottom: 10px;
+}

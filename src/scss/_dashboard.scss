@@ -1,0 +1,135 @@
+.delete-button {
+  color: rgb(231, 231, 232);
+  background-color: rgb(83, 82, 82);
+  margin: 0px auto;
+  min-height: fit-content;
+
+  &:hover {
+    background-color: rgb(129, 128, 128);
+  }
+}
+
+.newApp-Field, .updateApp-Field {
+  // display: grid;
+  // grid-template-columns: 1fr 1fr 1fr;
+  // grid-template-rows: 1fr 1fr 1fr;
+  // gap: 5px 5px;
+  // grid-template-areas:
+  //   "JobPosition CompanyName Email"
+  //   "Phone Contact Link"
+  //   "Status Status Button";
+  // width: 800px;
+  // height: 300px;
+
+  background-color: rgba(255, 255, 255, .5);
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 7px;
+  border: none;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, .5);
+  // width: 100%;
+  // transition: all .1s linear;
+}
+
+#newApp, #updateApp {
+  // text-align: center;
+  // letter-spacing: .  2em;
+  color: rgb(69, 68, 68);
+  margin-bottom: 10px;
+}
+
+.newApplication {
+  //   text-align: center;
+  //   margin-bottom: 10px;
+  //   color: whitesmoke;
+  border: rgb(12, 40, 52);
+  backdrop-filter: saturate(180%) blur(10px);
+}
+
+.update-application {
+  //   text-align: center;
+  //   margin-bottom: 10px;
+  //   color: whitesmoke;
+  border: rgb(12, 40, 52);
+  backdrop-filter: saturate(180%) blur(10px);
+  position: fixed;
+  z-index: 100;
+  padding: 15% 1%;
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+#jobTable {
+  background-color: rgba(255, 255, 255, .5);
+  width: fit-content;
+  color: rgb(48, 48, 48);
+  font-size: 16px;
+  margin: 4% auto;
+  padding: 20px;
+  backdrop-filter: saturate(180%) blur(10px);
+}
+
+
+td {
+  width: 4%;
+  border-top: 2px solid grey;
+  // border-left: 2px solid grey;
+}
+
+.update {
+  width: fit-content;
+  & * {
+    box-sizing: border-box;
+    margin: 2% auto;
+    height: 3vw;
+  }
+
+  & button {
+    padding: 4% 5%;
+  }
+}
+
+#tableHead {
+  font-size: 18px;
+}
+
+.status {
+  background-color: rgba(255, 255, 255, .5);
+  margin-top: 0.7rem;
+  padding: 0.6rem;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, .5);
+
+}
+
+
+.button-container {
+  width: 35%;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.fieldDiv {
+  display: flex;
+  flex-direction: column;
+
+  & input {
+    width: 60%;
+    margin: 0.5% auto;
+  }
+}
+
+.submit-status-btn {
+  margin-top: 0.7rem;
+  padding: 0.6rem;
+  font-size: 0.8rem;
+  border-radius: 5px;
+}
+
+.update-button {
+  margin: 0px auto;
+}
