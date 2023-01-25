@@ -95,21 +95,15 @@ const NewApplicationCreator = ({ user }) => {
       body: JSON.stringify(jobApp),
     })
       .then((response) => {
-        console.log(
-          'my response from posting  new jobApp using user id is: ',
-          response
-        );
         return response.json();
       })
       .then((data) =>
+        // call dispatch to update dashboard based on data response
         dispatch({ type: ACTIONS.ADD_APP, payload: { jobApp: data } })
       )
       .catch(() => {
         console.log('An error occurred posting to database');
       });
-    //console.log('im supposed to fetch and this is my jobapp', jobApp);
-
-    // dispatch should be moved into fetch request to avoid date.now to give unique key, payload should be the response from posting;
 
     // using reset functions from custom hooks to reset each state to empty => input values reset to empty
     resetJobRole();

@@ -74,8 +74,10 @@
 td {
   width: 4%;
   border-top: 2px solid grey;
+  box-sizing: border-box;
   // border-left: 2px solid grey;
 }
+
 
 .update {
   width: fit-content;

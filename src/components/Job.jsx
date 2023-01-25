@@ -18,6 +18,17 @@ export default function Job({ job, dispatch }) {
     }).then((response) => console.log(response));
   };
 
+  function renderUpdateBox(job) {
+    // render the update application div
+    document.getElementById('jobTable').style.pointerEvents = 'none';
+    render(
+      <UpdateApplication job={job} dispatch={dispatch} />,
+      document.getElementById('updateDiv')
+    );
+  }
+
+  console.log(job);
+
   return (
     <tr>
       <td>{job.job_role}</td>
@@ -37,7 +48,6 @@ export default function Job({ job, dispatch }) {
           Delete
         </button>
       </td>
-      
     </tr>
   );
 }

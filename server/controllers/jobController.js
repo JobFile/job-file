@@ -7,7 +7,8 @@ jobController.getJobsList = async (req, res, next) => {
   const getJobs = `SELECT job_id, user_id, job_role, company_name, 
     phone, email, contact_name, job_link, status 
     FROM jobs 
-    WHERE user_id = $1`;
+    WHERE user_id = $1
+    ORDER BY status ASC`;
   const values = [userID];
 
   try {

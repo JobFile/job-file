@@ -29,7 +29,7 @@ export default function UpdateApplication({ job, dispatch }) {
   const updateApp = (e) => {
     e.preventDefault();
 
-    console.log('entering update req');
+    // console.log('entering update req');
     fetch(`/jobs/` + job.job_id, {
       method: 'PATCH',
       headers: {
@@ -38,38 +38,15 @@ export default function UpdateApplication({ job, dispatch }) {
       body: JSON.stringify(jobApp),
     })
       .then((response) => {
-        console.log(
-          'my response from posting  new jobApp using user id is: ',
-          response
-        );
         return response.json();
       })
       .then((data) =>
+        // update state via dispatch function so that the update renders upon server response
         dispatch({ type: ACTIONS.UPDATE_APP, payload: { jobApp: data } })
       )
       .catch(() => {
         console.log('An error occurred posting to database');
       });
-    //console.log('im supposed to fetch and this is my jobapp', jobApp);
-
-    // dispatch should be moved into fetch request to avoid date.now to give unique key, payload should be the response from posting;
-
-    // using reset functions from custom hooks to reset each state to empty => input values reset to empty
-    // resetJobRole();
-    // resetCompanyName();
-    // resetEmail();
-    // resetPhone();
-    // resetContact();
-    // resetLink();
-    // resetStatus();
-    // fetch(`/users/${user}`)
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     dispatch({ type: ACTIONS.INITIALIZE, payload: { initialList: data } });
-    //   })
-    //   .catch(() => {
-    //     console.log('err getting stuff');
-    //   });
 
     // unmount the component
     document.getElementById('jobTable').style.pointerEvents = 'auto';
